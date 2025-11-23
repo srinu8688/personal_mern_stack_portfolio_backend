@@ -17,7 +17,7 @@ dotenv.config({ path: "./config/config.env" });
 
 app.use(
   cors({
-    origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
+    origin: [process.env.PORTFOLIO_URL, "https://github.com/srinu8688/mern-stack-portfolio-backend.git"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
