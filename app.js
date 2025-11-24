@@ -14,10 +14,14 @@ import projectRouter from "./routes/projectRouter.js";
 
 const app = express();
 dotenv.config({ path: "./config/config.env" });
-
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/',
+    limits: { fileSize: 50 * 1024 * 1024 }, // 50MB max file size
+}));
 app.use(
   cors({
-    origin: [process.env.PORTFOLIO_URL, "https://github.com/srinu8688/mern-stack-portfolio-backend.git"],
+    origin: [process.env.PORTFOLIO_URL,process.env.DASHBOARD_URL,"http://localhost:5173","http://localhost:4000","http://localhost:5174","https://mern-stack-portfolio-backend-mev4.onrender.com"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -27,12 +31,12 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  fileUpload({
-    useTempFiles: true,
-    tempFileDir: "/tmp/",
-  })
-);
+// app.use(
+//   fileUpload({
+//     useTempFiles: true,
+//     tempFileDir: "/tmp/",
+//   })
+// );
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/timeline", timelineRouter);

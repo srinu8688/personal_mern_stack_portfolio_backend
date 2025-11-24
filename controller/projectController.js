@@ -17,6 +17,7 @@ export const addNewProject = catchAsyncErrors(async (req, res, next) => {
     technologies,
     deployed,
   } = req.body;
+   // Validate required fields
   if (
     !title ||
     !description ||
@@ -26,8 +27,18 @@ export const addNewProject = catchAsyncErrors(async (req, res, next) => {
     !technologies ||
     !deployed
   ) {
+    console.log("Missing fields detected. Received:", {
+      title: !!title,
+      description: !!description,
+      gitRepoLink: !!gitRepoLink,
+      projectLink: !!projectLink,
+      stack: !!stack,
+      technologies: !!technologies,
+      deployed: !!deployed
+    });
     return next(new ErrorHandler("Please Provide All Details!", 400));
   }
+  
   const cloudinaryResponse = await cloudinary.uploader.upload(
     projectBanner.tempFilePath,
     { folder: "PORTFOLIO PROJECT IMAGES" }
