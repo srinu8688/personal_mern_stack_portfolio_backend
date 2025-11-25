@@ -21,7 +21,7 @@ app.use(fileUpload({
 }));
 app.use(
   cors({
-    origin: [process.env.PORTFOLIO_URL,process.env.DASHBOARD_URL,"http://localhost:5173","http://localhost:4000","http://localhost:5174","https://mern-stack-portfolio-backend-mev4.onrender.com"],
+    origin: [process.env.PORTFOLIO_URL,process.env.DASHBOARD_URL,"http://localhost:5173","http://localhost:4000","http://localhost:5174","https://mern-stack-portfolio-backend-mev4.onrender.com","https://personal-mern-stack-portfolio-dashb.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
